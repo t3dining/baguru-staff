@@ -106,12 +106,14 @@ a.hub-card:active { background: var(--soft); }
   </div>
 
   <!-- ★行き先の ?from=owner は「フォルダーアプリから開いた」印。名前は Owner だが、予約ボードと Order受付が見ている印はこれ
-       （付いていると 🏠 ホームが出て、iPhone で画面が上に寄らない形で開く）。Staff のために別の印を作らない。
+       （付いていると 🏠 ホームが出て、iPhone で画面が上に寄らない形で開く）。
+       &hub=staff は「Staff から開いた」印。アドレスに付いているので、保存の控え（bg.owner・bg.hub）が消えても、Owner のものに変わっていても、
+       🏠 ホームは必ず Staff に戻る（2026-11-02 ko-dai さんの報告「Staff を操作していたのに Owner に切り替わる」）。
        行き先と絵は公開先のアドレスで書き、この Mac で開いたときだけ data-local の場所に差し替える（下の <script>） -->
   <ul class="hub__list">
     <li>
-      <a class="hub-card" href="https://t3dining.github.io/baguru-yoyaku/?from=owner"
-         data-local="../予約ボード/board/index.html?from=owner" style="--card-color:#1b4a63">
+      <a class="hub-card" href="https://t3dining.github.io/baguru-yoyaku/?from=owner&hub=staff"
+         data-local="../予約ボード/board/index.html?from=owner&hub=staff" style="--card-color:#1b4a63">
         <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-yoyaku/icon-192.png"
               data-local="../予約ボード/board/icon-192.png" alt=""></span>
         <span class="hub-card__text">
@@ -122,8 +124,8 @@ a.hub-card:active { background: var(--soft); }
       </a>
     </li>
     <li>
-      <a class="hub-card" href="https://t3dining.github.io/baguru-app/order.html?from=owner"
-         data-local="../バグるOrder受付/order.html?from=owner" style="--card-color:#1d3128">
+      <a class="hub-card" href="https://t3dining.github.io/baguru-app/order.html?from=owner&hub=staff"
+         data-local="../バグるOrder受付/order.html?from=owner&hub=staff" style="--card-color:#1d3128">
         <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-app/img/store-icon-192.png"
               data-local="../バグるOrder受付/img/store-icon-192.png" alt=""></span>
         <span class="hub-card__text">
