@@ -1,7 +1,7 @@
 {
   "name": "バグる Staff｜炭焼ハンバーグ バグる",
   "short_name": "バグる Staff",
-  "description": "バグるの予約ボードとバグるOrder受付の入口（社員用）",
+  "description": "バグるの予約ボード・Order受付・LINE引き継ぎの入口（社員用）",
   "id": "/baguru-staff/",
   "start_url": "./",
   "scope": "/",

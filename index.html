@@ -20,7 +20,7 @@
 <style>
 /* ============================================================
  *  バグる Staff（社員用。ホーム画面のフォルダ代わり）
- *  バグる Owner（バグるOwner/）と同じ考え方で、社員が使う2つだけを並べる。
+ *  バグる Owner（バグるOwner/）と同じ考え方で、社員が使うものだけを並べる。
  *  ★見た目はこのファイルだけで完結させる（ほかのアプリの CSS は読まない）。色の値は公式アプリと同じ
  * ============================================================ */
 :root {
@@ -135,11 +135,24 @@ a.hub-card:active { background: var(--soft); }
         <span class="hub-card__arrow" aria-hidden="true">›</span>
       </a>
     </li>
+    <li>
+      <!-- LINE のポイントの数を台帳に入れるアプリ（別の公開先 t3dining/baguru-line。もとは 店舗アプリ/バグる/バグるLINE引き継ぎ/） -->
+      <a class="hub-card" href="https://t3dining.github.io/baguru-line/?from=owner&hub=staff"
+         data-local="../バグるLINE引き継ぎ/index.html?from=owner&hub=staff" style="--card-color:#b8914b">
+        <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-line/img/line-icon-192.png"
+              data-local="../バグるLINE引き継ぎ/img/line-icon-192.png" alt=""></span>
+        <span class="hub-card__text">
+          <span class="hub-card__name">バグる<wbr>LINE引き継ぎ</span>
+          <span class="hub-card__sub">LINEの<wbr>ポイントを<wbr>台帳に<wbr>入れる</span>
+        </span>
+        <span class="hub-card__arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
   </ul>
 
   <p class="hub__note">
     ホーム画面に追加するのは<b>この画面だけ</b>でOKです。<br>
-    はじめて開くときは、<b>合言葉</b>を入れてください。予約ボードとOrder受付は同じ合言葉です。
+    はじめて開くときは、<b>合言葉</b>を入れてください。3つとも同じ合言葉です。
     この端末に覚えるので、次からは要りません。お客様に見せないでください。
   </p>
   <p class="hub__foot" id="hubFoot"></p>
