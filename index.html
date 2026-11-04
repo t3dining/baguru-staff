@@ -1,187 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">   <!-- 社員用なので、検索に出さない -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="バグる Staff">
-<meta name="theme-color" content="#1f1916">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="img/staff-icon-180.png">
-<link rel="icon" type="image/png" sizes="64x64" href="img/staff-icon-64.png">
-<title>バグる Staff｜炭焼ハンバーグ バグる</title>
-<!-- 字の形は公式アプリ・ホームページと同じ。読めないときは、スマホの字で出る -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-<style>
-/* ============================================================
- *  バグる Staff（社員用。ホーム画面のフォルダ代わり）
- *  バグる Owner（バグるOwner/）と同じ考え方で、社員が使うものだけを並べる。
- *  ★見た目はこのファイルだけで完結させる（ほかのアプリの CSS は読まない）。色の値は公式アプリと同じ
- * ============================================================ */
-:root {
-  --coal: #1f1916;
-  --cream: #faf6f0;
-  --paper: #ffffff;
-  --ember: #c7361d;
-  --ink: #221c18;
-  --sub: #675d55;
-  --weak: #a3988e;
-  --line: #e6dccf;
-  --soft: #f3ece2;
-  --jp: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
-  --en: "Oswald", "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
-}
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; }
-/* 画面の真ん中に置きます。iPhone の上端に食い込まないよう、safe-area-inset 分の余白を必ず空けます */
-body {
-  min-height: 100dvh;
-  display: flex;
-  padding: calc(env(safe-area-inset-top) + 20px) 0 calc(env(safe-area-inset-bottom) + 20px);
-  background: var(--cream);
-  color: var(--ink);
-  font-family: var(--jp);
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-/* margin:auto は、中身が画面より高くなっても上が切れない中央寄せです */
-.hub { margin: auto; width: 100%; max-width: 520px; padding: 0 16px; }
-
-.hub__head { text-align: center; margin-bottom: 26px; }
-.hub__logo {
-  width: 84px; height: 84px; margin: 0 auto 12px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
-  overflow: hidden;
-}
-.hub__logo img { width: 78%; height: 78%; object-fit: contain; }
-.hub__title { margin: 0; font-family: var(--en); font-size: 26px; font-weight: 600; letter-spacing: .02em; line-height: 1.2; }
-.hub__title b { font-family: var(--jp); font-weight: 700; margin-right: .18em; }
-.hub__shop { margin: 3px 0 0; font-size: 12.5px; color: var(--sub); }
-
-.hub__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.hub-card {
-  display: flex; align-items: center; gap: 15px; width: 100%;
-  min-height: 104px; padding: 18px 16px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-left: 6px solid var(--card-color);
-  border-radius: 16px; box-shadow: 0 2px 8px rgba(31, 25, 22, .06);
-  color: var(--ink); text-align: left; text-decoration: none;
-}
-a.hub-card:active { background: var(--soft); }
-.hub-card__icon {
-  flex: 0 0 auto; width: 64px; height: 64px;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 15px;
-  overflow: hidden;
-}
-.hub-card__icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.hub-card__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.hub-card__name { font-size: 20px; font-weight: 700; line-height: 1.25; }
-.hub-card__sub { font-size: 12.5px; color: var(--sub); line-height: 1.45; }
-/* 名前と説明は、<wbr> を置いた言葉の区切りでだけ折り返します（言葉の途中で切れないように）。
-   区切りの間が画面より長いとき（幅の狭いスマホ）だけは、どこででも折り返します */
-.hub-card__name, .hub-card__sub { word-break: keep-all; overflow-wrap: anywhere; }
-.hub-card__arrow { flex: 0 0 auto; font-size: 26px; color: var(--weak); line-height: 1; }
-
-.hub__foot { margin: 14px 0 0; text-align: center; font-size: 11.5px; color: var(--weak);
-  font-variant-numeric: tabular-nums; }
-</style>
-</head>
-<body>
-
-<main class="hub">
-  <div class="hub__head">
-    <div class="hub__logo"><img src="https://t3dining.github.io/baguru-app/img/logo.png" data-local="../img/logo.png" alt=""></div>
-    <h1 class="hub__title"><b>バグる</b>Staff</h1>
-    <p class="hub__shop">炭焼ハンバーグ バグる</p>
-  </div>
-
-  <!-- ★行き先の ?from=owner は「フォルダーアプリから開いた」印。名前は Owner だが、予約ボードと Order受付が見ている印はこれ
-       （付いていると 🏠 ホームが出て、iPhone で画面が上に寄らない形で開く）。
-       &hub=staff は「Staff から開いた」印。アドレスに付いているので、保存の控え（bg.owner・bg.hub）が消えても、Owner のものに変わっていても、
-       🏠 ホームは必ず Staff に戻る（2026-11-02 ko-dai さんの報告「Staff を操作していたのに Owner に切り替わる」）。
-       行き先と絵は公開先のアドレスで書き、この Mac で開いたときだけ data-local の場所に差し替える（下の <script>） -->
-  <ul class="hub__list">
-    <li>
-      <a class="hub-card" href="https://t3dining.github.io/baguru-yoyaku/?from=owner&hub=staff"
-         data-local="../予約ボード/board/index.html?from=owner&hub=staff" style="--card-color:#1b4a63">
-        <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-yoyaku/icon-192.png"
-              data-local="../予約ボード/board/icon-192.png" alt=""></span>
-        <span class="hub-card__text">
-          <span class="hub-card__name">予約ボード</span>
-          <span class="hub-card__sub">予約の<wbr>台帳・<wbr>ネット予約の<wbr>承認</span>
-        </span>
-        <span class="hub-card__arrow" aria-hidden="true">›</span>
-      </a>
-    </li>
-    <li>
-      <a class="hub-card" href="https://t3dining.github.io/baguru-app/order.html?from=owner&hub=staff"
-         data-local="../バグるOrder受付/order.html?from=owner&hub=staff" style="--card-color:#1d3128">
-        <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-app/img/store-icon-192.png"
-              data-local="../バグるOrder受付/img/store-icon-192.png" alt=""></span>
-        <span class="hub-card__text">
-          <span class="hub-card__name">バグる<wbr>Order受付</span>
-          <span class="hub-card__sub">テイクアウトの<wbr>注文を<wbr>受ける</span>
-        </span>
-        <span class="hub-card__arrow" aria-hidden="true">›</span>
-      </a>
-    </li>
-    <li>
-      <!-- LINE のポイントの数を台帳に入れるアプリ（別の公開先 t3dining/baguru-line。もとは 店舗アプリ/バグる/バグるLINE引き継ぎ/） -->
-      <a class="hub-card" href="https://t3dining.github.io/baguru-line/?from=owner&hub=staff"
-         data-local="../バグるLINE引き継ぎ/index.html?from=owner&hub=staff" style="--card-color:#b8914b">
-        <span class="hub-card__icon"><img src="https://t3dining.github.io/baguru-line/img/line-icon-192.png"
-              data-local="../バグるLINE引き継ぎ/img/line-icon-192.png" alt=""></span>
-        <span class="hub-card__text">
-          <span class="hub-card__name">バグる<wbr>LINE引き継ぎ</span>
-          <span class="hub-card__sub">LINEの<wbr>ポイントを<wbr>台帳に<wbr>入れる</span>
-        </span>
-        <span class="hub-card__arrow" aria-hidden="true">›</span>
-      </a>
-    </li>
-  </ul>
-
-  <p class="hub__foot" id="hubFoot"></p>
-</main>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- バグる Staff は https://t3dining-store.github.io/baguru-staff/ へ引っ越す（お店用アプリの引っ越し。../../お店用アプリの引っ越し.md）。
+     ★引っ越しの日まで出さない（用意だけ）。いまは公開の一覧（道具/公開する.py の HUB_PUBLISH）に入っていないので、どこにも出ない。
+     引っ越しの日に、前の公開先 t3dining/baguru-staff の index.html として出す。
+     前のアドレス（https://t3dining.github.io/baguru-staff/）は公式アプリと保存場所が同じなので、開いたら、ここに残ったお店の保存を消して、新しいアドレスへのボタンを出す。
+     ★自動では移らない（ホーム画面のアイコンを入れ直してもらうため） -->
+<title>バグる Staff</title>
 <script>
-  // この Mac で開いたとき（localhost）は、手元のフォルダから開きます。
-  // アドレスに ?test を付けて開いたときは、行き先にも ?test を付けます（にせの受け口につなぐ。本物に送らないため）
-  var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var TEST = LOCAL && /[?&]test\b/.test(location.search);
-  if (LOCAL) {
-    document.querySelectorAll('[data-local]').forEach(function (el) {
-      el.setAttribute(el.tagName === 'IMG' ? 'src' : 'href', el.getAttribute('data-local'));
+  (function () {
+    // ★名前を1つずつ消す（bg. で始まる名前は、公式アプリのお客様の保存にも使っている。まとめて消さない）。
+    // 社員のスマホは、Staff の古いアイコンしか開かないことがあるので、ここで、お店のアプリが残した保存を全部消す（計画書の「古い場所で消すもの」の表）。
+    // bg.owner は公式アプリの 🏠 も読んでいたが、引っ越しの日には、公式アプリはアドレスの印だけで戻る形に直っている（段階2の3）
+    var KEYS = ['baguru.daicho.pin', 'baguru.line.screen', 'bg.hpAdmin', 'baguru.yoyaku.owner', 'baguru.yoyaku.view',
+                'baguru.daicho.seen', 'baguru.daicho.sound', 'baguru.daicho.shell',   // shell には今日の予約の控え（お客様のお名前）が入る
+                'bg.cookRung', 'bg.hub', 'bg.owner'];
+    KEYS.forEach(function (k) {
+      try { localStorage.removeItem(k); } catch (e) {}
+      try { sessionStorage.removeItem(k); } catch (e) {}
     });
-  }
-  if (TEST) {
-    document.querySelectorAll('a.hub-card').forEach(function (a) {
-      var url = new URL(a.getAttribute('href'), location.href);
-      url.searchParams.set('test', '');
-      a.href = url.href;
-    });
-  }
-
-  // 戻り先（この画面のアドレス）を控えます。各アプリの 🏠 ホームが読みます（Owner と同じ bg.owner）。
-  // sessionStorage はアプリを閉じると消えることがあるので、端末に残る localStorage の bg.hub にも控えます。
-  // ★ホーム画面のアプリごとに保存の場所が別なので、社員の端末では、ここに Staff のアドレスが入る
-  var here = location.href.split('#')[0];
-  try { sessionStorage.setItem('bg.owner', here); } catch (e) {}
-  try { localStorage.setItem('bg.hub', here); } catch (e) {}
-
-  // 公開先の版（公開の道具が書く version.json）を下に出します。この Mac には無いので、読みにいきません
-  if (!LOCAL) fetch('version.json', { cache: 'no-store' })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (v) { if (v && v.version) document.getElementById('hubFoot').textContent = '版 ' + v.version; })
-    .catch(function () {});
+  })();
 </script>
-
+</head>
+<body style="margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box;background:#faf6f0;color:#221c18;font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;text-align:center;line-height:1.7">
+<div style="max-width:420px">
+  <p style="font-size:20px;font-weight:700;margin:0 0 12px">バグる Staff は、<br>新しいアドレスに引っ越しました</p>
+  <p style="margin:0 0 8px;color:#675d55">ホーム画面に入れているときは、このアイコンを消して、新しいアドレスから入れ直してください。</p>
+  <p style="margin:0 0 24px;color:#675d55">予約ボード・Order受付・LINE引き継ぎの合言葉は、新しいアドレスで開いたときに、もう一度入れてください。</p>
+  <a href="https://t3dining-store.github.io/baguru-staff/" style="display:inline-block;padding:14px 32px;border-radius:999px;background:#c7361d;color:#fff;font-size:17px;font-weight:700;text-decoration:none">新しいアドレスで開く</a>
+  <p style="margin:20px 0 0;font-size:13px;color:#a3988e;">新しいアドレス<br>t3dining-store.github.io/baguru-staff/</p>
+</div>
 </body>
 </html>
